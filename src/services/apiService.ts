@@ -3,7 +3,7 @@ import API from "./axios";
 
 export const fetchCategories = async (): Promise<Category[]> => {
   const res = await API.get("/categories");
-  return res.data;
+  return res.data.data;
 };
 
 export const fetchProviders = async (): Promise<Provider[]> => {

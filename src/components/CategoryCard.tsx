@@ -1,17 +1,15 @@
-import type { FC } from 'react';
-
-interface Props {
+type Props = {
   name: string;
   onClick: () => void;
-}
+};
 
-const CategoryCard: FC<Props> = ({ name, onClick }) => {
+const CategoryCard = ({ name, onClick }: Props) => {
   return (
     <div
+      className="bg-white rounded-xl shadow-md hover:shadow-lg transition cursor-pointer p-6 text-center"
       onClick={onClick}
-      className="cursor-pointer p-6 border rounded-xl shadow-sm hover:shadow-md transition bg-white text-center text-lg font-medium"
     >
-      {name}
+      <div className="text-xl font-semibold text-gray-800">{name}</div>
     </div>
   );
 };
