@@ -1,27 +1,29 @@
-import { FC } from 'react';
+import React from 'react';
+import type { Slot } from '../types';
+import { to12Hour } from '../services/utilityService';
 
-type SlotCardProps = {
-  time: string;
-  price: number;
-  available: boolean;
-  onSelect: () => void;
-  selected?: boolean;
-};
+interface SlotCardProps {
+  slot: Slot;
+  onBook: (slot: Slot) => void;
+}
 
-const SlotCard: FC<SlotCardProps> = ({ time, price, available, onSelect, selected }) => {
+const SlotCard: React.FC<SlotCardProps> = ({ slot, onBook }) => {
   return (
     <div
-      className={`p-4 rounded-2xl shadow-md flex flex-col items-center justify-between text-center border transition ${
-        available
-          ? selected
-            ? 'bg-blue-500 text-white border-blue-500'
-            : 'bg-white border-gray-300 hover:bg-gray-100'
-          : 'bg-gray-200 text-gray-400 cursor-not-allowed'
-      }`}
-      onClick={available ? onSelect : undefined}
+      className="bg-white border border-gray-200 rounded-lg p-6 shadow hover:shadow-md transition-shadow duration-300"
     >
-      <div className="text-lg font-semibold">{time}</div>
-      <div className="text-sm">₹{price}</div>
+      <p className="font-semibold text-indigo-800 text-lg">
+        {to12Hour(slot.start_time.slice(11, 16))} - {to12Hour(slot.end_time.slice(11, 16))}
+      </p>
+      <p className="text-gray-700 mt-1">
+        ₹{slot.charges_per_slot_rupee ?? 0}
+      </p>
+      <button
+        onClick={() => onBook(slot)}
+        className="mt-4 px-5 bg-indigo-600 hover:bg-indigo-700 text-white py-2 rounded transition duration-200"
+      >
+        Book Now
+      </button>
     </div>
   );
 };

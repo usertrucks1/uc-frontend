@@ -16,3 +16,13 @@ export const fetchSlots = async (providerId: number, startDate: string): Promise
   return res.data;
 };
 
+export const holdSlot = async (slot_id: number) => {
+  const response = await API.post('/slots/hold', { slot_id });
+  return response.data;
+};
+
+export const bookSlot = async (slot_id:number, data: any) => {
+  const response = await API.post(`/slots/${slot_id}/book`, { data });
+  return response.data;
+};
+

@@ -26,3 +26,32 @@ export type Slot = {
   provider_id: number;
   charges_per_slot_rupee: number;
 }
+
+export type SlotPreview = {
+  id: number;
+  start_time: string; // ISO string
+  end_time: string;   // ISO string
+  status: string;
+  slot_hold_time: string; // ISO string
+
+  provider: {
+    id: number;
+    first_name: string;
+    last_name: string;
+    email: string;
+    phone_number: string;
+    work_start_time: string;
+    work_end_time: string;
+    slot_duration_mins: number;
+    charges_per_slot_rupee: number;
+
+    category: {
+      id: number;
+      name: string;
+    };
+  };
+}
+
+export type BookedSlot = {
+  
+}
