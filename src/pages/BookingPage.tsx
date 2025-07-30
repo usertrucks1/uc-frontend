@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 import { fetchBookings } from '../services/apiService';
 import type { Booking } from '../types';
 import { GetBookingStatus } from '../services/utilityService';
