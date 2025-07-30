@@ -42,7 +42,7 @@ const SlotsPage: React.FC = () => {
 
             navigate('/review', {
                 state: {
-                    slotDetails: heldSlot?.slot,
+                    slotDetails: heldSlot,
                 },
             });
         } catch (err: any) {

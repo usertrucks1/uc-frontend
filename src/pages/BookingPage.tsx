@@ -25,17 +25,6 @@ export default function BookingsPage() {
     }
   }
 
-  async function cancelBooking(id: number) {
-    try {
-      await axios.patch(`/api/bookings/${id}/cancel`);
-      fetchBookingData();
-    } catch (e) {
-      alert('Cancellation failed.');
-    }
-  }
-
-  const now = new Date();
-
   return (
     <div className="p-6">
       <h1 className="text-2xl font-semibold mb-4">Your Bookings</h1>

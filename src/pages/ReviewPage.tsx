@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import type { Slot, SlotPreview } from '../types';
+import type { SlotPreview } from '../types';
 import { to12Hour } from '../services/utilityService';
 import { bookSlot, holdSlot } from '../services/apiService';
 
