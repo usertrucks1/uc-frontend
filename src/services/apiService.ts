@@ -1,4 +1,4 @@
-import type { Category, Provider, Slot, BookingResponse } from "../types";
+import type { Category, Provider, Slot } from "../types";
 import API from "./axios";
 
 export const fetchCategories = async (): Promise<Category[]> => {
@@ -6,17 +6,13 @@ export const fetchCategories = async (): Promise<Category[]> => {
   return res.data.data;
 };
 
-export const fetchProviders = async (): Promise<Provider[]> => {
-  const res = await API.get("/providers");
+export const fetchProviders = async (categoryId: number): Promise<Provider[]> => {
+  const res = await API.get(`/providers?category_id=${categoryId}`);
+  return res.data.data;
+};
+
+export const fetchSlots = async (providerId: number, startDate: string): Promise<Slot[]> => {
+  const res = await API.get(`/slots?provider_id=${providerId}&start_date=${startDate}`);
   return res.data;
 };
 
-export const fetchAvailableSlots = async (): Promise<Slot[]> => {
-  const res = await API.get("/slots");
-  return res.data;
-};
-
-export const bookSlot = async (slotId: string): Promise<BookingResponse> => {
-  const res = await API.post('/book', { slotId });
-  return res.data;
-};
