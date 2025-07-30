@@ -1,4 +1,4 @@
-import type { Category, Provider, Slot } from "../types";
+import type { Booking, Category, Provider, Slot, SlotPreview } from "../types";
 import API from "./axios";
 
 export const fetchCategories = async (): Promise<Category[]> => {
@@ -16,13 +16,18 @@ export const fetchSlots = async (providerId: number, startDate: string): Promise
   return res.data;
 };
 
-export const holdSlot = async (slot_id: number) => {
+export const holdSlot = async (slot_id: number): Promise<SlotPreview> => {
   const response = await API.post('/slots/hold', { slot_id });
   return response.data;
 };
 
-export const bookSlot = async (slot_id:number, data: any) => {
-  const response = await API.post(`/slots/${slot_id}/book`, { data });
+export const bookSlot = async (slot_id:number, data: any): Promise<SlotPreview> => {
+  const response = await API.post(`/slots/book/${slot_id}`, { ...data });
   return response.data;
+};
+
+export const fetchBookings = async (phone_number:number): Promise<Booking[]> => {
+  const res = await API.get(`/bookings?phone_number=${phone_number}`);
+  return res.data;
 };
 

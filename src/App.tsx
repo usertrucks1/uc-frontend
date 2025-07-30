@@ -3,6 +3,8 @@ import HomePage from './pages/HomePage';
 import ProvidersPage from './pages/ProviderPage';
 import SlotsPage from './pages/SlotsPage';
 import ReviewPage from './pages/ReviewPage';
+import SuccessPage from './pages/SuccessPage';
+import BookingPage from './pages/BookingPage';
 
 const App = () => {
   return (
@@ -11,7 +13,8 @@ const App = () => {
       <Route path="/providers/:categoryId" element={<ProvidersPage />} />
       <Route path="/slots/:providerId" element={<SlotsPage />} />
       <Route path="/review" element={<ReviewPage />} />
-      {/* <Route path="/book/:slotId" element={<BookingPage />} /> */}
+      <Route path="/slots/success" element={<SuccessPage />} />
+      <Route path="/bookings" element={<BookingPage />} />
     </Routes>
   );
 };

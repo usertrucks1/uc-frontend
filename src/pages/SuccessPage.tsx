@@ -8,7 +8,8 @@ export default function SlotBookingSuccessPage() {
   const bookedSlot = location.state?.bookedSlot;
 
   useEffect(() => {
-    if (!bookedSlot) navigate('/slots'); // redirect if no data
+    if (!bookedSlot) navigate('/slots');
+    localStorage.setItem("phone_number",bookedSlot.user.phone_number)
   }, [bookedSlot, navigate]);
 
   if (!bookedSlot) return null;
@@ -37,6 +38,34 @@ export default function SlotBookingSuccessPage() {
     category,
   } = provider;
 
+  const GetBookingStatus = (status: number) => {
+    switch (status) {
+      case 1:
+        return "Confirmed"
+      case 2:
+        return "Cancelled"
+      default:
+        break;
+    }
+  }
+
+    const GetSlotStatus = (status: number) => {
+    switch (status) {
+      case 1:
+        return "Unavailable"
+      case 2:
+        return "Available"
+      case 3:
+        return "Hold"
+      case 4:
+        return "Booked"
+
+      default:
+        break;
+    }
+  }
+  
+
   return (
     <div className="max-w-2xl mx-auto mt-10 p-6 border rounded-lg shadow-sm bg-white dark:bg-zinc-900 dark:text-white">
       <h1 className="text-3xl font-bold text-green-600 mb-6">🎉 Booking Confirmed!</h1>
@@ -44,8 +73,8 @@ export default function SlotBookingSuccessPage() {
       <div className="space-y-4 text-sm">
         <div className="text-gray-700 dark:text-gray-300">
           <p><strong>Booking ID:</strong> #{id}</p>
-          <p><strong>Status:</strong> {status}</p>
-          <p><strong>Booking Time:</strong> {new Date(booking_time).toLocaleString()}</p>
+          <p><strong>Status:</strong> {GetBookingStatus(status)}</p>
+          <p><strong>Booking Time:</strong> {booking_time}</p>
         </div>
 
         <hr />
@@ -58,9 +87,9 @@ export default function SlotBookingSuccessPage() {
         <hr />
 
         <div className="text-gray-700 dark:text-gray-300">
-          <p><strong>Slot Timing:</strong> {new Date(start_time).toLocaleTimeString()} - {new Date(end_time).toLocaleTimeString()}</p>
-          <p><strong>Slot Status:</strong> {slotStatus}</p>
-          {slot_hold_time && <p><strong>Slot Held At:</strong> {new Date(slot_hold_time).toLocaleString()}</p>}
+          <p><strong>Slot Timing:</strong> {start_time} - {end_time}</p>
+          <p><strong>Slot Status:</strong> {GetSlotStatus(slotStatus)}</p>
+          {slot_hold_time && <p><strong>Slot Held At:</strong> {slot_hold_time}</p>}
         </div>
 
         <hr />
@@ -75,10 +104,10 @@ export default function SlotBookingSuccessPage() {
 
       <div className="mt-8">
         <button
-          onClick={() => navigate('/')}
+          onClick={() => navigate('/bookings')}
           className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded"
         >
-          Go to Home
+          Go to Bookings
         </button>
       </div>
     </div>

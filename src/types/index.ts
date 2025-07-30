@@ -52,6 +52,23 @@ export type SlotPreview = {
   };
 }
 
-export type BookedSlot = {
-  
-}
+export type BookingStatus = 'CONFIRMED' | 'CANCELLED';
+
+export type Booking = {
+  id: number;
+  status: BookingStatus;
+  booking_time: string; // ISO string if coming from API
+  created_at: string;
+  updated_at: string;
+
+  slot: {
+    id: number;
+    start_time: string; // or Date if parsed
+    end_time: string;
+  };
+
+  provider: {
+    id: number;
+    name: string;
+  };
+};
