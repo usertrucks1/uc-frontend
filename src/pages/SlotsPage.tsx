@@ -24,7 +24,7 @@ const SlotsPage: React.FC = () => {
             const data = await fetchSlots(Number(providerId), selectedDate);
             console.log(data, "data")
             setSlots(data);
-            console.log(slots)
+            console.log(slots,"lots")
         } catch (err: any) {
             setError(err.message || 'Something went wrong');
         } finally {
@@ -34,15 +34,15 @@ const SlotsPage: React.FC = () => {
 
     const navigate = useNavigate();
 
-    const handleBookSlot = async (slot: Slot) => {
+    const handleBookSlot = async (slot: Slot, is_hold: boolean) => {
         try {
             setLoading(true);
-            const heldSlot = await holdSlot(slot.id);
-            console.log(heldSlot.slot)
+            const heldSlot = await holdSlot(slot.id, is_hold);
+            console.log(heldSlot,"heldslot")
 
             navigate('/review', {
                 state: {
-                    slotDetails: heldSlot.slot,
+                    slotDetails: heldSlot?.slot,
                 },
             });
         } catch (err: any) {

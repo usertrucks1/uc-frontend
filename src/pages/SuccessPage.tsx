@@ -1,5 +1,6 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
+import { GetBookingStatus, GetSlotStatus } from '../services/utilityService';
 
 export default function SlotBookingSuccessPage() {
   const location = useLocation();
@@ -37,33 +38,6 @@ export default function SlotBookingSuccessPage() {
     charges_per_slot_rupee,
     category,
   } = provider;
-
-  const GetBookingStatus = (status: number) => {
-    switch (status) {
-      case 1:
-        return "Confirmed"
-      case 2:
-        return "Cancelled"
-      default:
-        break;
-    }
-  }
-
-    const GetSlotStatus = (status: number) => {
-    switch (status) {
-      case 1:
-        return "Unavailable"
-      case 2:
-        return "Available"
-      case 3:
-        return "Hold"
-      case 4:
-        return "Booked"
-
-      default:
-        break;
-    }
-  }
   
 
   return (

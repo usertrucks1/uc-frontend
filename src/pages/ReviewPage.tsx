@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import type { SlotPreview } from '../types';
+import type { Slot, SlotPreview } from '../types';
 import { to12Hour } from '../services/utilityService';
-import { bookSlot } from '../services/apiService';
+import { bookSlot, holdSlot } from '../services/apiService';
 
 const ReviewPage: React.FC = () => {
   const location = useLocation();
@@ -31,6 +31,23 @@ const ReviewPage: React.FC = () => {
       /^(\+91)?[6-9]\d{9}$/.test(form.phone_number.trim())
     );
   };
+
+      const handleBookSlot = async (slot_id: number, is_hold: boolean) => {
+          try {
+              setLoading(true);
+              const heldSlot = await holdSlot(slot_id, is_hold);
+              console.log(heldSlot,"slothelod")
+  
+              navigate('/', {
+                  state: {
+                  },
+              });
+          } catch (err: any) {
+              setError('Slot is no longer available');
+          } finally {
+              setLoading(false);
+          }
+      };
 
   const handleConfirmBooking = async () => {
     if (!validateForm()) {
@@ -75,6 +92,12 @@ const ReviewPage: React.FC = () => {
       {error && <p className="text-red-600 text-center mt-4">{error}</p>}
 
       <div className="text-center mt-6">
+        <button
+          className="bg-indigo-600 text-white px-6 py-2 rounded hover:bg-indigo-700"
+          onClick={() => handleBookSlot(slotDetails.id, false)}
+        >
+          Cancel
+        </button>
         <button
           className="bg-indigo-600 text-white px-6 py-2 rounded hover:bg-indigo-700"
           onClick={() => setShowModal(true)}

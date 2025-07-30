@@ -4,7 +4,7 @@ import { to12Hour } from '../services/utilityService';
 
 interface SlotCardProps {
   slot: Slot;
-  onBook: (slot: Slot) => void;
+  onBook: (slot: Slot, is_hold: boolean) => void;
 }
 
 const SlotCard: React.FC<SlotCardProps> = ({ slot, onBook }) => {
@@ -19,7 +19,7 @@ const SlotCard: React.FC<SlotCardProps> = ({ slot, onBook }) => {
         ₹{slot.charges_per_slot_rupee ?? 0}
       </p>
       <button
-        onClick={() => onBook(slot)}
+        onClick={() => onBook(slot, true)}
         className="mt-4 px-5 bg-indigo-600 hover:bg-indigo-700 text-white py-2 rounded transition duration-200"
       >
         Book Now

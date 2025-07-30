@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { fetchBookings } from '../services/apiService';
 import type { Booking } from '../types';
+import { GetBookingStatus } from '../services/utilityService';
 
 export default function BookingsPage() {
   const [bookings, setBookings] = useState<Booking[]>([]);
@@ -17,7 +18,7 @@ export default function BookingsPage() {
 
     try {
       const res = await fetchBookings(Number(phone_number));
-      console.log(res,"res")
+      console.log(res, "res")
       setBookings(res);
     } catch (e) {
       console.error('Failed to fetch bookings:', e);
@@ -53,9 +54,15 @@ export default function BookingsPage() {
                 className="border p-4 rounded shadow-sm flex justify-between items-center"
               >
                 <div>
-                  <p><strong>Status:</strong> {booking?.status}</p>
-                  <p><strong>Start:</strong> {startTime.toLocaleString()}</p>
+                  <span
+                    className={`px-2 py-1 rounded text-white text-sm ${Number(booking?.status) === 1 ? 'bg-green-500' : 'bg-red-500'
+                      }`}
+                  >
+                    {GetBookingStatus(Number(booking?.status))}
+                  </span>
+                  <p><strong>Start Time:</strong> {startTime.toUTCString()}</p>
                   <p><strong>Provider:</strong> {booking.provider.name}</p>
+                  
                 </div>
 
                 {canCancel && (
