@@ -46,7 +46,6 @@ export default function BookingsPage() {
         <div className="space-y-4">
           {bookings.map((booking) => {
             const startTime = new Date(booking.slot.start_time);
-            const canCancel = booking.status === 'CONFIRMED' && startTime > now;
 
             return (
               <div
@@ -64,15 +63,6 @@ export default function BookingsPage() {
                   <p><strong>Provider:</strong> {booking.provider.name}</p>
                   
                 </div>
-
-                {canCancel && (
-                  <button
-                    onClick={() => cancelBooking(booking.id)}
-                    className="bg-red-500 text-white px-4 py-2 rounded"
-                  >
-                    Cancel
-                  </button>
-                )}
               </div>
             );
           })}
