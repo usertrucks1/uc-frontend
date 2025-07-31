@@ -10,10 +10,10 @@ A modern frontend application for **Urban Company-style service booking**. Built
 ---
 ## 📌 System Overview
 This project is a modern frontend application built with:
-Vite – Fast frontend tooling and dev server
-Tailwind CSS – Utility-first CSS framework
-PostCSS – Used to process Tailwind styles
-Docker – Containerized development environment
+- Vite – Fast frontend tooling and dev server
+- Tailwind CSS – Utility-first CSS framework
+- PostCSS – Used to process Tailwind styles
+- Docker – Containerized development environment
 
 ---
 
@@ -27,8 +27,18 @@ Docker – Containerized development environment
 
 ---
 ## 🧰 System Flow
-- When a User visits [https://uc-frontend-production.up.railway.app/] , Landing page is shown with a dynamic list of categories.
-- User 
+- When a User visits [https://uc-frontend-production.up.railway.app/] , landing page is shown with a dynamic list of categories.
+- User chooses a service category, then user is navigated to providers page that shows list of available providers in selected service category.
+- Once User select a provider considering their per hour changes, User is navigated to slots page that displays slot for the current date.
+- Users can also check slots for future as well upto next 7 days from current date.
+- User clicks book now on a slot, then a Slot Hold request is initiated to considering concurrent users trying to book same slot.
+- A given slot can be hold by only one user at a time, and other users will get slot unavailable message.
+- After holding the slot, user is navigated to Review page when user can review the slot details.
+- User can choose proceed with booking confirmation or can choose to cancel booking.
+- If user can cancel the booking in review page, Holded slot is released and made available again.
+- And If user proceed with booking, a booking request is sent and confirmed, User is navigated to confirmation page displaying booking summary.
+- User can navigate to booking page to check his bookings.
+- Bookings can also be cancelled from booking page.
 
 ---
 
