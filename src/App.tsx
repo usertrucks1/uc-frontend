@@ -11,7 +11,7 @@ const App = () => {
     <>
       <header className="sticky top-0 z-50 bg-white shadow-md flex items-center p-4">
         <img src="/logo.png" alt="App Icon" className="h-8 w-8 mr-2" />
-        <h1 className="text-lg font-semibold">Your App</h1>
+        <h1 className="text-lg font-semibold">Urban</h1>
       </header>
       <Routes>
         <Route path="/" element={<HomePage />} />
