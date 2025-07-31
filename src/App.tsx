@@ -8,14 +8,21 @@ import BookingPage from './pages/BookingPage';
 
 const App = () => {
   return (
-    <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path="/providers/:categoryId" element={<ProvidersPage />} />
-      <Route path="/slots/:providerId" element={<SlotsPage />} />
-      <Route path="/review" element={<ReviewPage />} />
-      <Route path="/slots/success" element={<SuccessPage />} />
-      <Route path="/bookings" element={<BookingPage />} />
-    </Routes>
+    <>
+      <header className="sticky top-0 z-50 bg-white shadow-md flex items-center p-4">
+        <img src="/logo.png" alt="App Icon" className="h-8 w-8 mr-2" />
+        <h1 className="text-lg font-semibold">Your App</h1>
+      </header>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/providers/:categoryId" element={<ProvidersPage />} />
+        <Route path="/slots/:providerId" element={<SlotsPage />} />
+        <Route path="/review" element={<ReviewPage />} />
+        <Route path="/slots/success" element={<SuccessPage />} />
+        <Route path="/bookings" element={<BookingPage />} />
+      </Routes>
+    </>
+
   );
 };
 
