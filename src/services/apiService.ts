@@ -31,3 +31,7 @@ export const fetchBookings = async (phone_number:number): Promise<Booking[]> => 
   return res.data;
 };
 
+export const cancelBookingById = async (id:number) => {
+  const res = await API.patch(`/bookings/${id}/cancel`);
+  return res.data;
+};
