@@ -10,11 +10,11 @@ A modern frontend application for **Urban Company-style service booking**. Built
 ---
 ## 📌 System Overview
 This project is a modern frontend application built with:
-
 Vite – Fast frontend tooling and dev server
 Tailwind CSS – Utility-first CSS framework
 PostCSS – Used to process Tailwind styles
 Docker – Containerized development environment
+
 ---
 
 ## 🚀 Features
