@@ -25,7 +25,7 @@ export default function BookingsPage() {
   }
 
   return (
-    <div className="p-6">
+    <div className="p-6 mx-32 ">
       <h1 className="text-2xl font-semibold mb-4">Your Bookings</h1>
 
       {bookings?.length === 0 ? (

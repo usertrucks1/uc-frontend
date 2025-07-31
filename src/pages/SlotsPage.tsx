@@ -24,7 +24,6 @@ const SlotsPage: React.FC = () => {
             const data = await fetchSlots(Number(providerId), selectedDate);
             console.log(data, "data")
             setSlots(data);
-            console.log(slots,"lots")
         } catch (err: any) {
             setError(err.message || 'Something went wrong');
         } finally {
@@ -38,11 +37,11 @@ const SlotsPage: React.FC = () => {
         try {
             setLoading(true);
             const heldSlot = await holdSlot(slot.id, is_hold);
-            console.log(heldSlot,"heldslot")
+            console.log(heldSlot,"held")
 
             navigate('/review', {
                 state: {
-                    slotDetails: heldSlot,
+                    slotDetails: heldSlot?.slot,
                 },
             });
         } catch (err: any) {
@@ -59,10 +58,10 @@ const SlotsPage: React.FC = () => {
 
     return (
         <div className="max-w-3xl mx-auto px-4 py-10">
-            <h1 className="text-3xl font-bold mb-6 text-center">Book a Slot</h1>
+            <h1 className="text-3xl font-bold mb-10 text-center">Book a Slot</h1>
 
-            <div className="mb-6 text-center">
-                <label htmlFor="date" className="block mb-2 text-lg font-medium text-gray-700">
+            <div className="mb-6 flex items-center gap-4">
+                <label htmlFor="date" className="text-lg font-medium text-gray-700">
                     Select Date
                 </label>
                 <input
@@ -76,6 +75,7 @@ const SlotsPage: React.FC = () => {
             </div>
 
 
+
             {loading && <Loader message="Loading slots..." />}
 
             {error && <Popup header={"Error"} message={error || "something went wrong"} cta={"Ok"} onClose={() => setError(null)} />}
@@ -85,7 +85,7 @@ const SlotsPage: React.FC = () => {
                 <p className="text-center text-gray-600">No slots available for this date.</p>
             )}
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                 {slots?.map((slot) => (
                     <SlotCard
                         key={slot.id}
@@ -94,6 +94,7 @@ const SlotsPage: React.FC = () => {
                     />
                 ))}
             </div>
+
         </div>
     );
 };

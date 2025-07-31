@@ -16,7 +16,7 @@ export const fetchSlots = async (providerId: number, startDate: string): Promise
   return res.data;
 };
 
-export const holdSlot = async (slot_id: number, is_hold : boolean): Promise<Slot> => {
+export const holdSlot = async (slot_id: number, is_hold : boolean) => {
   const response = await API.post('/slots/hold', { slot_id, is_hold });
   return response.data;
 };

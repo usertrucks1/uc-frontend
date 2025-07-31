@@ -9,10 +9,8 @@ interface SlotCardProps {
 
 const SlotCard: React.FC<SlotCardProps> = ({ slot, onBook }) => {
   return (
-    <div
-      className="bg-white border border-gray-200 rounded-lg p-6 shadow hover:shadow-md transition-shadow duration-300"
-    >
-      <p className="font-semibold text-indigo-800 text-lg">
+    <div className="bg-white border border-gray-200 rounded-md p-4 shadow-sm hover:shadow transition-shadow duration-200 text-sm">
+      <p className="font-medium text-indigo-800">
         {to12Hour(slot.start_time.slice(11, 16))} - {to12Hour(slot.end_time.slice(11, 16))}
       </p>
       <p className="text-gray-700 mt-1">
@@ -20,9 +18,9 @@ const SlotCard: React.FC<SlotCardProps> = ({ slot, onBook }) => {
       </p>
       <button
         onClick={() => onBook(slot, true)}
-        className="mt-4 px-5 bg-indigo-600 hover:bg-indigo-700 text-white py-2 rounded transition duration-200"
+        className="mt-3 px-4 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded text-sm transition duration-200"
       >
-        Book Now
+        Book
       </button>
     </div>
   );

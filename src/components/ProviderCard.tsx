@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { to12Hour } from '../services/utilityService';
 
 interface ProviderCardProps {
   provider: {
@@ -33,7 +34,7 @@ const ProviderCard: React.FC<ProviderCardProps> = ({ provider }) => {
         <span className="font-medium">Charges:</span> ₹{provider.charges_per_slot_rupee} / {provider.slot_duration_mins} min
       </p>
       <p className="text-sm text-gray-600 mb-4">
-        <span className="font-medium">Working Hours:</span> {provider.work_start_time} - {provider.work_end_time}
+        <span className="font-medium">Working Hours:</span> {to12Hour(provider.work_start_time)} - {to12Hour(provider.work_end_time)}
       </p>
       <button
         className="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-2 rounded transition duration-200"
