@@ -8,6 +8,14 @@ A modern frontend application for **Urban Company-style service booking**. Built
 > GitHub Repo: [https://github.com/usertrucks1/uc-frontend.git]
 
 ---
+## 📌 System Overview
+This project is a modern frontend application built with:
+
+Vite – Fast frontend tooling and dev server
+Tailwind CSS – Utility-first CSS framework
+PostCSS – Used to process Tailwind styles
+Docker – Containerized development environment
+---
 
 ## 🚀 Features
 
@@ -16,6 +24,11 @@ A modern frontend application for **Urban Company-style service booking**. Built
 - 📅 **Dynamic Slot Selection**
 - 📱 **Responsive UI** using TailwindCSS
 - ⚡ **Fast & Interactive UX** with minimal dependencies
+
+---
+## 🧰 System Flow
+- When a User visits [https://uc-frontend-production.up.railway.app/] , Landing page is shown with a dynamic list of categories.
+- User 
 
 ---
 
@@ -46,6 +59,22 @@ uc-frontend/
 ├── postcss.config.js
 ├── package.json
 └── README.md
+
+## ⚙️ Functional Approach
+1. Styling
+Uses Tailwind CSS with Just-In-Time (JIT) mode.
+Styles are added using utility classes in JSX/HTML.
+Tailwind's plugin is loaded via PostCSS, using @tailwindcss/postcss.
+
+2. Development Server
+Served by Vite on port 3001 by default.
+Vite provides HMR (Hot Module Replacement) for fast development.
+
+3. Dockerized Development
+App is containerized using Docker with the following features:
+Live code changes reflected inside the container.
+Node modules handled via bind mount or volume caching.
+Tailwind and Vite run inside the container.
 
 ## Running Locally
 
